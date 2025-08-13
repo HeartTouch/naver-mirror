@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>외부 브라우저 권장 · AI 소모임 링크 도우미</title>
+<style>
+  body{font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Apple SD Gothic Neo,Noto Sans KR,sans-serif;margin:0;background:#F9FAFB;color:#111827}
+  .wrap{max-width:720px;margin:0 auto;padding:24px}
+  .card{background:#fff;border:1px solid #E5E7EB;border-radius:16px;padding:20px}
+  .btn{display:inline-block;padding:12px 16px;border-radius:12px;background:#2563EB;color:#fff;text-decoration:none;font-weight:700}
+  .ghost{background:#fff;border:1px solid #E5E7EB;color:#111827}
+  .banner{position:sticky;top:0;background:#111827;color:#fff;padding:10px 14px;display:none}
+  .row{display:flex;gap:8px;justify-content:space-between;align-items:center}
+  a.inline{color:#2563EB}
+</style>
+<div class="banner" id="iab">
+  <div class="row">
+    <div>앱 내부 브라우저에서 느릴 수 있어요. <b>외부 브라우저로 열기</b> 추천!</div>
+    <div>
+      <a class="btn ghost" id="openChrome" href="#">크롬으로 열기</a>
+      <a class="btn ghost" href="./snapshot/">경량 미러 열기</a>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="card">
+    <h1>AI 소모임 링크</h1>
+    <p>원본 링크: <a class="inline" href="https://m.site.naver.com/1OsuE" target="_blank" rel="noopener">https://m.site.naver.com/1OsuE</a></p>
+    <p>인앱에서 문제가 있으면 아래 버튼을 사용하세요.</p>
+    <p>
+      <a class="btn" href="https://m.site.naver.com/1OsuE" id="openOriginal" target="_blank" rel="noopener">원본 바로 열기</a>
+      <a class="btn ghost" href="./snapshot/">경량 미러 열기</a>
+    </p>
+  </div>
+</div>
+<script>
+  (function(){
+    var ua = navigator.userAgent||"";
+    var inApp = /(KAKAOTALK|FBAN|FBAV|Instagram|Line|NAVER|Daum|Whale|Everytime|Band)/i.test(ua) || /wv\)/i.test(ua);
+    if(inApp) document.getElementById('iab').style.display='block';
+    var target = "https://m.site.naver.com/1OsuE";
+    var openChrome = document.getElementById('openChrome');
+    if(openChrome) {
+      var intentUrl = 'intent://' + target.replace(/^https?:\/\//,'') + '#Intent;scheme=https;package=com.android.chrome;end';
+      openChrome.setAttribute('href', intentUrl);
+    }
+  })();
+</script>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "naver-mirror-snapshot",
+  "private": true,
+  "scripts": {
+    "snapshot": "node scripts/snapshot.js"
+  },
+  "devDependencies": {
+    "puppeteer": "^22.0.0"
+  }
+}

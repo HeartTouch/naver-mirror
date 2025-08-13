@@ -1,0 +1,21 @@
+name: Build Snapshot
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 18 * * *'  # 매일 03:00 KST (18:00 UTC)
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm i
+      - run: npm run snapshot
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore(snapshot): update mirror'
+          file_pattern: snapshot/index.html
